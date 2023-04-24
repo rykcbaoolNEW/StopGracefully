@@ -1,0 +1,10 @@
+name: StopGracefully
+version: ${version}
+main: xymb.StopGracefully
+api-version: 1.19
+folia-supported: true
+authors: [xymb]
+description: Stops server gracefully with warning
+commands:
+  stopgracefully:
+    usage: /<command>
