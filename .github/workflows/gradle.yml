@@ -3,23 +3,27 @@ name: Build Java Project
 on:
   push:
     branches:
-      - main
+      - main  # Trigger the build on push to the main branch
   workflow_dispatch:  # Allows manual trigger from GitHub UI
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # You can also use other OS like 'windows-latest' or 'macos-latest'
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2  # Checkout the repository code
+
       - name: Set up JDK 17
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v2  # Set up JDK for the build
         with:
           java-version: '17'
+
       - name: Build with Gradle
-        run: ./gradlew build
-      - name: Archive build artifacts
-        uses: actions/upload-artifact@v2
+        run: ./gradlew build  # Build the project with Gradle (replace if using Maven)
+
+      - name: Upload artifact (JAR)
+        uses: actions/upload-artifact@v2  # Uploads the .jar file as an artifact
         with:
-          name: stop-gracefully-jar
-          path: build/libs/*.jar
+          name: stop-gracefully-jar  # Artifact name
+          path: build/libs/*.jar    # Path to the generated .jar file (adjust if needed)
